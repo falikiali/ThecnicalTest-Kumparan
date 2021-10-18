@@ -1,7 +1,7 @@
 package com.example.thecnicaltest_kumparan.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.example.thecnicaltest_kumparan.data.ResultState
+import com.example.thecnicaltest_kumparan.utils.ResultState
 import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
 

@@ -7,6 +7,7 @@ import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
 import com.example.thecnicaltest_kumparan.domain.repository.Repository
 import com.example.thecnicaltest_kumparan.utils.DataMapper
+import com.example.thecnicaltest_kumparan.utils.ResultState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +19,12 @@ class RepositoryImpl(private val remoteDataSource: RemoteDataSource) : Repositor
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = remoteDataSource.getAllPost()
-                val dataMapped = DataMapper.mapPostResponseToEntities(response)
-                result.postValue(ResultState.Success(dataMapped))
+                if (response.isEmpty()) {
+                    result.postValue(ResultState.Empty)
+                } else {
+                    val dataMapped = DataMapper.mapPostResponseToEntities(response)
+                    result.postValue(ResultState.Success(dataMapped))
+                }
             } catch (ex: IOException) {
                 ex.printStackTrace()
                 result.postValue(ResultState.Error(ex.message.toString()))
@@ -33,8 +38,12 @@ class RepositoryImpl(private val remoteDataSource: RemoteDataSource) : Repositor
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = remoteDataSource.getAllUser()
-                val dataMapped = DataMapper.mapUserResponseToEntities(response)
-                result.postValue(ResultState.Success(dataMapped))
+                if (response.isEmpty()) {
+                    result.postValue(ResultState.Empty)
+                } else {
+                    val dataMapped = DataMapper.mapUserResponseToEntities(response)
+                    result.postValue(ResultState.Success(dataMapped))
+                }
             } catch (ex: IOException) {
                 ex.printStackTrace()
                 result.postValue(ResultState.Error(ex.message.toString()))
