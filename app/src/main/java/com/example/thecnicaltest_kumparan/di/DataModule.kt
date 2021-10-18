@@ -1,8 +1,16 @@
 package com.example.thecnicaltest_kumparan.di
 
+import com.example.thecnicaltest_kumparan.data.RepositoryImpl
+import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSource
+import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSourceImpl
 import com.example.thecnicaltest_kumparan.data.remote.api.ApiService
+import com.example.thecnicaltest_kumparan.domain.repository.Repository
+import com.example.thecnicaltest_kumparan.domain.usecase.UseCase
+import com.example.thecnicaltest_kumparan.domain.usecase.UseCaseImpl
+import com.example.thecnicaltest_kumparan.ui.MainViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,4 +32,17 @@ val networkModule = module {
             .build()
         retrofit.create(ApiService::class.java)
     }
+}
+
+val repositoryModule = module {
+    single<RemoteDataSource> { RemoteDataSourceImpl(get()) }
+    single<Repository> { RepositoryImpl(get()) }
+}
+
+val useCaseModule = module {
+    factory<UseCase> { UseCaseImpl(get()) }
+}
+
+val viewModelModule = module {
+    viewModel { MainViewModel(get()) }
 }
