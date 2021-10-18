@@ -1,14 +1,12 @@
-package com.example.thecnicaltest_kumparan.data
+package com.example.thecnicaltest_kumparan.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Post(
+    val body: String,
     val id: Int,
-    val userId: Int,
-    val userName: String,
-    val userCompany: String,
     val title: String,
-    val body: String
+    val userId: Int
 ) : Parcelable
