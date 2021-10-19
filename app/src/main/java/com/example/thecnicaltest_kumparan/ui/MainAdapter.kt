@@ -33,7 +33,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ListViewHolder>() {
         fun bind(data: Post) {
             val user = listUser[data.userId - 1]
             with(binding) {
-                tvTitle.text = data.title
+                ("\"" + data.title + "\"").also { tvTitle.text = it }
                 tvBody.text = data.body
                 (user.name + " From " + user.company).also { tvUsers.text = it }
             }
