@@ -3,6 +3,7 @@ package com.example.thecnicaltest_kumparan.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSource
+import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSourceImpl
 import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
 import com.example.thecnicaltest_kumparan.domain.repository.Repository
@@ -12,13 +13,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RepositoryImpl(private val remoteDataSource: RemoteDataSource) : Repository {
+@Singleton
+class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: RemoteDataSourceImpl) : Repository {
     override fun getAllPost(): LiveData<ResultState<List<Post>>> {
         val result = MutableLiveData<ResultState<List<Post>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSource.getAllPost()
+                val response = remoteDataSourceImpl.getAllPost()
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
@@ -37,7 +41,7 @@ class RepositoryImpl(private val remoteDataSource: RemoteDataSource) : Repositor
         val result = MutableLiveData<ResultState<List<User>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSource.getAllUser()
+                val response = remoteDataSourceImpl.getAllUser()
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
