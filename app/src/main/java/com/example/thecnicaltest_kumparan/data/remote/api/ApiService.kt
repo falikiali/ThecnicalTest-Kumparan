@@ -6,8 +6,8 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("posts")
-    fun getPosts(): List<PostResponsesItem>
+    suspend fun getPosts(): List<PostResponsesItem>
 
     @GET("users")
-    fun getUsers(): List<UserResponsesItem>
+    suspend fun getUsers(): List<UserResponsesItem>
 }

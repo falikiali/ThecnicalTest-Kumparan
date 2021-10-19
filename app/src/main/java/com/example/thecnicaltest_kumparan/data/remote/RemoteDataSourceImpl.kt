@@ -3,14 +3,12 @@ package com.example.thecnicaltest_kumparan.data.remote
 import com.example.thecnicaltest_kumparan.data.remote.api.ApiService
 import com.example.thecnicaltest_kumparan.data.remote.responses.PostResponsesItem
 import com.example.thecnicaltest_kumparan.data.remote.responses.UserResponsesItem
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteDataSourceImpl(private val apiService: ApiService) : RemoteDataSource{
-    override fun getAllPost(): List<PostResponsesItem> {
-        return apiService.getPosts()
-    }
+@Singleton
+class RemoteDataSourceImpl @Inject constructor (private val apiService: ApiService) : RemoteDataSource{
+    override suspend fun getAllPost(): List<PostResponsesItem> = apiService.getPosts()
 
-    override fun getAllUser(): List<UserResponsesItem> {
-        return apiService.getUsers()
-    }
-
+    override suspend fun getAllUser(): List<UserResponsesItem> = apiService.getUsers()
 }
