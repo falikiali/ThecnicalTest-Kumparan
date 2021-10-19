@@ -1,4 +1,4 @@
-package com.example.thecnicaltest_kumparan.ui
+package com.example.thecnicaltest_kumparan.ui.post
 
 import android.view.LayoutInflater
 import android.view.View
@@ -44,11 +44,11 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ListViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         return ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_post_row, parent, false))
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data = listData[position]
         holder.bind(data)
     }

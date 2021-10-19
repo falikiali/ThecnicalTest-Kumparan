@@ -1,4 +1,4 @@
-package com.example.thecnicaltest_kumparan.ui
+package com.example.thecnicaltest_kumparan.ui.post
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

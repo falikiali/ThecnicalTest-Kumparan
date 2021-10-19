@@ -1,4 +1,4 @@
-package com.example.thecnicaltest_kumparan.ui
+package com.example.thecnicaltest_kumparan.ui.post
 
 import androidx.lifecycle.ViewModel
 import com.example.thecnicaltest_kumparan.domain.usecase.UseCaseInteractor
