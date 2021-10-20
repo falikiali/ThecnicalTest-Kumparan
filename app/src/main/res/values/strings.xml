@@ -5,4 +5,5 @@
     <string name="post_title">Title</string>
     <string name="post_body">Body</string>
     <string name="detail_post">Detail of The Posts</string>
+    <string name="company">Company</string>
 </resources>
