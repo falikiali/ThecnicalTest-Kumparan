@@ -16,20 +16,20 @@
         app:cardElevation="4dp"
         app:cardMaxElevation="4dp"
         app:cardUseCompatPadding="true"
-        android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="@color/navy">
+        android:layout_marginBottom="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="@drawable/ic_wave"
             android:padding="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/detail_post"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/user_name"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/colom"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_user_name"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:maxLines="1"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/company"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/colom"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_user_company"
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:maxLines="1"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/post_title"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,14 +111,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/colom"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="italic"/>
 
             </LinearLayout>
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/post_body"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,14 +141,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/colom"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -175,11 +175,11 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comments"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/rv_comments"
                 android:clipToPadding="false"
-                tools:listitem="@layout/list_item_comment_row"/>
+                tools:listitem="@layout/list_item_comment_row" />
 
         </HorizontalScrollView>
 
