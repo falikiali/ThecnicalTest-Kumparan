@@ -10,6 +10,7 @@ import com.example.thecnicaltest_kumparan.databinding.ActivityPostDetailBinding
 import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
 import com.example.thecnicaltest_kumparan.ui.post.MainActivity
+import com.example.thecnicaltest_kumparan.ui.userdetail.UserDetailActivity
 import com.example.thecnicaltest_kumparan.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,7 +61,10 @@ class PostDetailActivity : AppCompatActivity() {
 
     private fun onClickUserName(user: User) {
         binding.tvUserName.setOnClickListener {
-
+            val intent = Intent(this, UserDetailActivity::class.java).apply {
+                putExtra(UserDetailActivity.EXTRA_USER, user)
+            }
+            startActivity(intent)
         }
     }
 
