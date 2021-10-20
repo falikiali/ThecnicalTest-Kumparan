@@ -7,5 +7,5 @@ import com.example.thecnicaltest_kumparan.data.remote.responses.UserResponsesIte
 interface RemoteDataSource {
     suspend fun getAllPost(): List<PostResponsesItem>
     suspend fun getAllUser(): List<UserResponsesItem>
-    suspend fun getAllComment(): List<CommentResponseItem>
+    suspend fun getComment(postId: Int): List<CommentResponseItem>
 }

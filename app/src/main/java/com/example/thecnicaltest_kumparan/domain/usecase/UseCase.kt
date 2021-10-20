@@ -9,5 +9,5 @@ import com.example.thecnicaltest_kumparan.domain.model.User
 interface UseCase {
     fun getAllPost(): LiveData<ResultState<List<Post>>>
     fun getAllUser(): LiveData<ResultState<List<User>>>
-    fun getAllComment(): LiveData<ResultState<List<Comment>>>
+    fun getComment(postId: Int): LiveData<ResultState<List<Comment>>>
 }

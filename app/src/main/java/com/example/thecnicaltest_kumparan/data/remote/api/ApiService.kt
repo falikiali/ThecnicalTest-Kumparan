@@ -4,6 +4,7 @@ import com.example.thecnicaltest_kumparan.data.remote.responses.CommentResponseI
 import com.example.thecnicaltest_kumparan.data.remote.responses.PostResponsesItem
 import com.example.thecnicaltest_kumparan.data.remote.responses.UserResponsesItem
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
     @GET("posts")
@@ -12,6 +13,6 @@ interface ApiService {
     @GET("users")
     suspend fun getUsers(): List<UserResponsesItem>
 
-    @GET("comments")
-    suspend fun getComments(): List<CommentResponseItem>
+    @GET("posts/{postId}/comments")
+    suspend fun getComments(@Path("postId") postId: Int): List<CommentResponseItem>
 }

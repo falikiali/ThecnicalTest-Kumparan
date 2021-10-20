@@ -13,5 +13,5 @@ class RemoteDataSourceImpl @Inject constructor (private val apiService: ApiServi
 
     override suspend fun getAllUser(): List<UserResponsesItem> = apiService.getUsers()
 
-    override suspend fun getAllComment(): List<CommentResponseItem> = apiService.getComments()
+    override suspend fun getComment(postId: Int) = apiService.getComments(postId)
 }

@@ -57,11 +57,11 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
         return result
     }
 
-    override fun getAllComment(): LiveData<ResultState<List<Comment>>> {
+    override fun getComment(postId: Int): LiveData<ResultState<List<Comment>>> {
         val result = MutableLiveData<ResultState<List<Comment>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSourceImpl.getAllComment()
+                val response = remoteDataSourceImpl.getComment(postId)
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
