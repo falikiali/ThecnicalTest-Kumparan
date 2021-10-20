@@ -2,6 +2,7 @@ package com.example.thecnicaltest_kumparan.domain.usecase
 
 import androidx.lifecycle.LiveData
 import com.example.thecnicaltest_kumparan.data.RepositoryImpl
+import com.example.thecnicaltest_kumparan.domain.model.Comment
 import com.example.thecnicaltest_kumparan.utils.ResultState
 import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
@@ -11,4 +12,6 @@ class UseCaseInteractor @Inject constructor (private val repositoryImpl: Reposit
     override fun getAllPost(): LiveData<ResultState<List<Post>>> = repositoryImpl.getAllPost()
 
     override fun getAllUser(): LiveData<ResultState<List<User>>> = repositoryImpl.getAllUser()
+
+    override fun getAllComment(): LiveData<ResultState<List<Comment>>> = repositoryImpl.getAllComment()
 }

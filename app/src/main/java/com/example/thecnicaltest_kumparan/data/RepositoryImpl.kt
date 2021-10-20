@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSource
 import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSourceImpl
+import com.example.thecnicaltest_kumparan.domain.model.Comment
 import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
 import com.example.thecnicaltest_kumparan.domain.repository.Repository
@@ -46,6 +47,25 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
                     result.postValue(ResultState.Empty)
                 } else {
                     val dataMapped = DataMapper.mapUserResponseToEntities(response)
+                    result.postValue(ResultState.Success(dataMapped))
+                }
+            } catch (ex: IOException) {
+                ex.printStackTrace()
+                result.postValue(ResultState.Error(ex.message.toString()))
+            }
+        }
+        return result
+    }
+
+    override fun getAllComment(): LiveData<ResultState<List<Comment>>> {
+        val result = MutableLiveData<ResultState<List<Comment>>>()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = remoteDataSourceImpl.getAllComment()
+                if (response.isEmpty()) {
+                    result.postValue(ResultState.Empty)
+                } else {
+                    val dataMapped = DataMapper.mapCommentResponseToEntities(response)
                     result.postValue(ResultState.Success(dataMapped))
                 }
             } catch (ex: IOException) {

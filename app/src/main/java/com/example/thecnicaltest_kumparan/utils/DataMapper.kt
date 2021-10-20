@@ -1,7 +1,9 @@
 package com.example.thecnicaltest_kumparan.utils
 
+import com.example.thecnicaltest_kumparan.data.remote.responses.CommentResponseItem
 import com.example.thecnicaltest_kumparan.data.remote.responses.PostResponsesItem
 import com.example.thecnicaltest_kumparan.data.remote.responses.UserResponsesItem
+import com.example.thecnicaltest_kumparan.domain.model.Comment
 import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
 
@@ -32,5 +34,20 @@ object DataMapper {
             listUser.add(user)
         }
         return listUser
+    }
+
+    fun mapCommentResponseToEntities(input: List<CommentResponseItem>): List<Comment> {
+        val listComment = ArrayList<Comment>()
+        input.map {
+            val comment = Comment(
+                it.body,
+                it.email,
+                it.id,
+                it.name,
+                it.postId
+            )
+            listComment.add(comment)
+        }
+        return listComment
     }
 }

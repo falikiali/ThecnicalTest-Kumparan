@@ -1,6 +1,7 @@
 package com.example.thecnicaltest_kumparan.data.remote
 
 import com.example.thecnicaltest_kumparan.data.remote.api.ApiService
+import com.example.thecnicaltest_kumparan.data.remote.responses.CommentResponseItem
 import com.example.thecnicaltest_kumparan.data.remote.responses.PostResponsesItem
 import com.example.thecnicaltest_kumparan.data.remote.responses.UserResponsesItem
 import javax.inject.Inject
@@ -11,4 +12,6 @@ class RemoteDataSourceImpl @Inject constructor (private val apiService: ApiServi
     override suspend fun getAllPost(): List<PostResponsesItem> = apiService.getPosts()
 
     override suspend fun getAllUser(): List<UserResponsesItem> = apiService.getUsers()
+
+    override suspend fun getAllComment(): List<CommentResponseItem> = apiService.getComments()
 }
