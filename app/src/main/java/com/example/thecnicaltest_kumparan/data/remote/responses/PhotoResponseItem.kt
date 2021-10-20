@@ -1,8 +1,9 @@
 package com.example.thecnicaltest_kumparan.data.remote.responses
 
-data class PostResponsesItem(
-    val body: String,
+data class PhotoResponseItem(
+    val albumId: Int,
     val id: Int,
+    val thumbnailUrl: String,
     val title: String,
-    val userId: Int
+    val url: String
 )

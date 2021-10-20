@@ -1,14 +1,10 @@
 package com.example.thecnicaltest_kumparan.utils
 
-import com.example.thecnicaltest_kumparan.data.remote.responses.CommentResponseItem
-import com.example.thecnicaltest_kumparan.data.remote.responses.PostResponsesItem
-import com.example.thecnicaltest_kumparan.data.remote.responses.UserResponsesItem
-import com.example.thecnicaltest_kumparan.domain.model.Comment
-import com.example.thecnicaltest_kumparan.domain.model.Post
-import com.example.thecnicaltest_kumparan.domain.model.User
+import com.example.thecnicaltest_kumparan.data.remote.responses.*
+import com.example.thecnicaltest_kumparan.domain.model.*
 
 object DataMapper {
-    fun mapPostResponseToEntities(input: List<PostResponsesItem>): List<Post> {
+    fun mapPostResponseToEntities(input: List<PostResponseItem>): List<Post> {
         val listPost = ArrayList<Post>()
         input.map {
             val post = Post(
@@ -22,7 +18,7 @@ object DataMapper {
         return listPost
     }
 
-    fun mapUsersResponseToEntities(input: List<UserResponsesItem>): List<User> {
+    fun mapUsersResponseToEntities(input: List<UserResponseItem>): List<User> {
         val listUser = ArrayList<User>()
         input.map {
             val user = User(
@@ -39,7 +35,7 @@ object DataMapper {
         return listUser
     }
 
-    fun mapUserResponseToEntities(input: UserResponsesItem): User =
+    fun mapUserResponseToEntities(input: UserResponseItem): User =
         User(
             input.email,
             input.id,
@@ -63,5 +59,33 @@ object DataMapper {
             listComment.add(comment)
         }
         return listComment
+    }
+
+    fun mapAlbumResponseToEntities(input: List<AlbumResponseItem>): List<Album> {
+        val listAlbum = ArrayList<Album>()
+        input.map {
+            val album = Album(
+                it.id,
+                it.title,
+                it.userId
+            )
+            listAlbum.add(album)
+        }
+        return listAlbum
+    }
+
+    fun mapPhotoResponseToEntities(input: List<PhotoResponseItem>): List<Photo> {
+        val listPhoto = ArrayList<Photo>()
+        input.map {
+            val photo = Photo(
+                it.albumId,
+                it.id,
+                it.thumbnailUrl,
+                it.title,
+                it.url
+            )
+            listPhoto.add(photo)
+        }
+        return listPhoto
     }
 }

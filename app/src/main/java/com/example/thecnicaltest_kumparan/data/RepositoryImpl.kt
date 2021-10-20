@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSource
 import com.example.thecnicaltest_kumparan.data.remote.RemoteDataSourceImpl
-import com.example.thecnicaltest_kumparan.domain.model.Comment
-import com.example.thecnicaltest_kumparan.domain.model.Post
-import com.example.thecnicaltest_kumparan.domain.model.User
+import com.example.thecnicaltest_kumparan.domain.model.*
 import com.example.thecnicaltest_kumparan.domain.repository.Repository
 import com.example.thecnicaltest_kumparan.utils.DataMapper
 import com.example.thecnicaltest_kumparan.utils.ResultState
@@ -81,6 +79,44 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
                     result.postValue(ResultState.Empty)
                 } else {
                     val dataMapped = DataMapper.mapCommentResponseToEntities(response)
+                    result.postValue(ResultState.Success(dataMapped))
+                }
+            } catch (ex: IOException) {
+                ex.printStackTrace()
+                result.postValue(ResultState.Error(ex.message.toString()))
+            }
+        }
+        return result
+    }
+
+    override fun getAlbum(userId: Int): LiveData<ResultState<List<Album>>> {
+        val result = MutableLiveData<ResultState<List<Album>>>()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = remoteDataSourceImpl.getAlbum(userId)
+                if (response.isEmpty()) {
+                    result.postValue(ResultState.Empty)
+                } else {
+                    val dataMapped = DataMapper.mapAlbumResponseToEntities(response)
+                    result.postValue(ResultState.Success(dataMapped))
+                }
+            } catch (ex: IOException) {
+                ex.printStackTrace()
+                result.postValue(ResultState.Error(ex.message.toString()))
+            }
+        }
+        return result
+    }
+
+    override fun getPhoto(albumId: Int): LiveData<ResultState<List<Photo>>> {
+        val result = MutableLiveData<ResultState<List<Photo>>>()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = remoteDataSourceImpl.getPhoto(albumId)
+                if (response.isEmpty()) {
+                    result.postValue(ResultState.Empty)
+                } else {
+                    val dataMapped = DataMapper.mapPhotoResponseToEntities(response)
                     result.postValue(ResultState.Success(dataMapped))
                 }
             } catch (ex: IOException) {

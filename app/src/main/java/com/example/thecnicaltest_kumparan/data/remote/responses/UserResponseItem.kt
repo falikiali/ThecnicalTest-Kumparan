@@ -1,6 +1,6 @@
 package com.example.thecnicaltest_kumparan.data.remote.responses
 
-data class UserResponsesItem(
+data class UserResponseItem(
     val address: Address,
     val company: Company,
     val email: String,

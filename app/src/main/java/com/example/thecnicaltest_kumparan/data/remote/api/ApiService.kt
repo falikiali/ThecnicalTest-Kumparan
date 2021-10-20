@@ -1,21 +1,25 @@
 package com.example.thecnicaltest_kumparan.data.remote.api
 
-import com.example.thecnicaltest_kumparan.data.remote.responses.CommentResponseItem
-import com.example.thecnicaltest_kumparan.data.remote.responses.PostResponsesItem
-import com.example.thecnicaltest_kumparan.data.remote.responses.UserResponsesItem
+import com.example.thecnicaltest_kumparan.data.remote.responses.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
     @GET("posts")
-    suspend fun getPosts(): List<PostResponsesItem>
+    suspend fun getPosts(): List<PostResponseItem>
 
     @GET("users")
-    suspend fun getUsers(): List<UserResponsesItem>
+    suspend fun getUsers(): List<UserResponseItem>
 
     @GET("posts/{postId}/comments")
     suspend fun getComments(@Path("postId") postId: Int): List<CommentResponseItem>
 
     @GET("users/{userId}")
-    suspend fun getUser(@Path("userId") userId: Int): UserResponsesItem
+    suspend fun getUser(@Path("userId") userId: Int): UserResponseItem
+
+    @GET("users/{userId}/albums")
+    suspend fun getAlbums(@Path("userId") userId: Int): List<AlbumResponseItem>
+
+    @GET("albums/{albumId}/photos")
+    suspend fun getPhotos(@Path("albumId") albumId: Int): List<PhotoResponseItem>
 }
