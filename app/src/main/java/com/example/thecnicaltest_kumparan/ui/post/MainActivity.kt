@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             when(data) {
                 is ResultState.Error -> Log.d("Error", data.error)
                 is ResultState.Success -> mainAdapter.setData(data.data)
+                is ResultState.Empty -> Log.d("Post", "Data is empty")
             }
         })
 
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             when(data) {
                 is ResultState.Error -> Log.d("Error", data.error)
                 is ResultState.Success -> mainAdapter.setUser(data.data)
+                is ResultState.Empty -> Log.d("User", "Data is empty")
             }
         })
     }

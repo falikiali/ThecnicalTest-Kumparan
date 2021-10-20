@@ -31,11 +31,14 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ListItemPostRowBinding.bind(itemView)
         fun bind(data: Post) {
-            val user = listUser[data.userId - 1]
             with(binding) {
                 ("\"" + data.title + "\"").also { tvTitle.text = it }
                 tvBody.text = data.body
-                (user.name + " From " + user.company).also { tvUsers.text = it }
+                listUser.forEach { user ->
+                    if (user.id == data.userId) {
+                        (user.name + " From " + user.company).also { tvUsers.text = it }
+                    }
+                }
             }
         }
 
