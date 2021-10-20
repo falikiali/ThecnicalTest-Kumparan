@@ -13,5 +13,7 @@ class UseCaseInteractor @Inject constructor (private val repositoryImpl: Reposit
 
     override fun getAllUser(): LiveData<ResultState<List<User>>> = repositoryImpl.getAllUser()
 
+    override fun getUser(userId: Int): LiveData<ResultState<User>> = repositoryImpl.getUser(userId)
+
     override fun getComment(postId: Int): LiveData<ResultState<List<Comment>>> = repositoryImpl.getComment(postId)
 }

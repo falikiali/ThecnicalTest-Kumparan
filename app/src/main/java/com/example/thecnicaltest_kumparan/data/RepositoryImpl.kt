@@ -46,9 +46,24 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
-                    val dataMapped = DataMapper.mapUserResponseToEntities(response)
+                    val dataMapped = DataMapper.mapUsersResponseToEntities(response)
                     result.postValue(ResultState.Success(dataMapped))
                 }
+            } catch (ex: IOException) {
+                ex.printStackTrace()
+                result.postValue(ResultState.Error(ex.message.toString()))
+            }
+        }
+        return result
+    }
+
+    override fun getUser(userId: Int): LiveData<ResultState<User>> {
+        val result = MutableLiveData<ResultState<User>>()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = remoteDataSourceImpl.getUser(userId)
+                val dataMapped = DataMapper.mapUserResponseToEntities(response)
+                result.postValue(ResultState.Success(dataMapped))
             } catch (ex: IOException) {
                 ex.printStackTrace()
                 result.postValue(ResultState.Error(ex.message.toString()))

@@ -22,19 +22,33 @@ object DataMapper {
         return listPost
     }
 
-    fun mapUserResponseToEntities(input: List<UserResponsesItem>): List<User> {
+    fun mapUsersResponseToEntities(input: List<UserResponsesItem>): List<User> {
         val listUser = ArrayList<User>()
         input.map {
             val user = User(
                 it.email,
                 it.id,
                 it.name,
-                it.company.name
+                it.company.name,
+                it.address.street + ", " + it.address.suite + ", " + it.address.city + ", " + it.address.zipcode,
+                it.phone,
+                it.website
             )
             listUser.add(user)
         }
         return listUser
     }
+
+    fun mapUserResponseToEntities(input: UserResponsesItem): User =
+        User(
+            input.email,
+            input.id,
+            input.name,
+            input.company.name,
+            input.address.street + ", " + input.address.suite + ", " + input.address.city + ", " + input.address.zipcode,
+            input.phone,
+            input.website
+        )
 
     fun mapCommentResponseToEntities(input: List<CommentResponseItem>): List<Comment> {
         val listComment = ArrayList<Comment>()
