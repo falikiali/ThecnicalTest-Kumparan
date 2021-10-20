@@ -12,16 +12,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModels()
-
     private lateinit var binding: ActivityMainBinding
-
     private val mainAdapter = MainAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        title = "Techical Test"
+        title = "List Post Page"
 
         initRecyclerView()
         observeViewModel()
@@ -31,12 +29,6 @@ class MainActivity : AppCompatActivity() {
         binding.rvView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mainAdapter
-        }
-    }
-
-    private fun onClickItem() {
-        mainAdapter.onItemClick = {
-
         }
     }
 

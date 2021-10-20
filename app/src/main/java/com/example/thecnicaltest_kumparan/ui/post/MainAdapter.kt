@@ -1,5 +1,6 @@
 package com.example.thecnicaltest_kumparan.ui.post
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +9,16 @@ import com.example.thecnicaltest_kumparan.R
 import com.example.thecnicaltest_kumparan.databinding.ListItemPostRowBinding
 import com.example.thecnicaltest_kumparan.domain.model.Post
 import com.example.thecnicaltest_kumparan.domain.model.User
+import com.example.thecnicaltest_kumparan.ui.postdetail.PostDetailActivity
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ListViewHolder>() {
-    private var listData = ArrayList<Post>()
+    private var listPost = ArrayList<Post>()
     private val listUser = ArrayList<User>()
-    var onItemClick: ((Post) -> Unit)? = null
 
-    fun setData(newListData: List<Post>?) {
-        if (newListData == null) return
-        listData.clear()
-        listData.addAll(newListData)
+    fun setData(newListPost: List<Post>?) {
+        if (newListPost == null) return
+        listPost.clear()
+        listPost.addAll(newListPost)
         notifyDataSetChanged()
     }
 
@@ -40,10 +41,20 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ListViewHolder>() {
                     }
                 }
             }
-        }
 
-        init {
-            binding.root.setOnClickListener { onItemClick?.invoke(listData[bindingAdapterPosition]) }
+            listUser.forEach { user ->
+                if (user.id == data.userId) {
+                    with(itemView) {
+                        setOnClickListener {
+                            val intent = Intent(context, PostDetailActivity::class.java).apply {
+                                putExtra(PostDetailActivity.DETAIL_POST, data)
+                                putExtra(PostDetailActivity.USER, user)
+                            }
+                            context.startActivity(intent)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -52,12 +63,11 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val data = listData[position]
+        val data = listPost[position]
         holder.bind(data)
     }
 
     override fun getItemCount(): Int {
-        return listData.size
+        return listPost.size
     }
-
 }
