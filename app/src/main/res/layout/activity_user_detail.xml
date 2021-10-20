@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".ui.userdetail.UserDetailActivity">
 
   <androidx.cardview.widget.CardView
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/ic_wave"
+        android:background="@drawable/ic_wave_3"
         android:padding="16dp">
 
       <TextView
