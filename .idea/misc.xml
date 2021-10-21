@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/drawable/ic_cancel.xml" value="0.25925925925925924" />
         <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26481481481481484" />
         <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/drawable/ic_wave.xml" value="0.26481481481481484" />
         <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/drawable/ic_wave_2.xml" value="0.26481481481481484" />
         <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/drawable/ic_wave_3.xml" value="0.26481481481481484" />
-        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/activity_main.xml" value="0.3914246196403873" />
-        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/activity_post_detail.xml" value="0.33" />
-        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/activity_user_detail.xml" value="0.23324275362318841" />
+        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/activity_post_detail.xml" value="0.25" />
+        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/activity_user_detail.xml" value="0.25" />
+        <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/list_item_album_row.xml" value="0.22554347826086957" />
         <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/list_item_comment_row.xml" value="0.3829787234042553" />
         <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/list_item_post_row.xml" value="0.33" />
         <entry key="..\:/Ali Faliki/Project Android/ThecnicalTestKumparan/app/src/main/res/layout/list_item_row.xml" value="0.43605546995377503" />

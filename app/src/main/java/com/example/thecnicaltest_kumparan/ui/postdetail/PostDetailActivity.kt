@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thecnicaltest_kumparan.databinding.ActivityPostDetailBinding
@@ -31,6 +32,8 @@ class PostDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "Detail Post Page"
+
+        binding.loading.visibility = View.VISIBLE
 
         getIntentData()
         initRecyclerView()
@@ -76,11 +79,18 @@ class PostDetailActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel(postId: Int) {
+        binding.loading.visibility = View.GONE
         postDetailViewModel.getComment(postId).observe(this, { data ->
             when(data) {
-                is ResultState.Error -> Log.d("Error", data.error)
+                is ResultState.Error -> {
+                    binding.viewError.visibility = View.VISIBLE
+                    binding.rvComments.visibility = View.GONE
+                }
                 is ResultState.Success -> postDetailAdapter.setData(data.data)
-                is ResultState.Empty -> Log.d("Post", "Data is empty")
+                is ResultState.Empty -> {
+                    binding.viewEmpty.visibility = View.VISIBLE
+                    binding.rvComments.visibility = View.GONE
+                }
             }
         })
     }
