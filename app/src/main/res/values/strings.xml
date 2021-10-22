@@ -15,4 +15,5 @@
     <string name="comments">Comments</string>
     <string name="failed_load_data">Failed load data</string>
     <string name="data_is_empty">Data is empty</string>
+    <string name="album">Album</string>
 </resources>

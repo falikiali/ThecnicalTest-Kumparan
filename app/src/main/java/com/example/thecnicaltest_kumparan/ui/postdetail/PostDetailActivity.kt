@@ -31,9 +31,7 @@ class PostDetailActivity : AppCompatActivity() {
         binding = ActivityPostDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = "Detail Post Page"
-
-        binding.loading.visibility = View.VISIBLE
+        title = "Detail User Page"
 
         getIntentData()
         initRecyclerView()
@@ -79,19 +77,8 @@ class PostDetailActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel(postId: Int) {
-        binding.loading.visibility = View.GONE
         postDetailViewModel.getComment(postId).observe(this, { data ->
-            when(data) {
-                is ResultState.Error -> {
-                    binding.viewError.visibility = View.VISIBLE
-                    binding.rvComments.visibility = View.GONE
-                }
-                is ResultState.Success -> postDetailAdapter.setData(data.data)
-                is ResultState.Empty -> {
-                    binding.viewEmpty.visibility = View.VISIBLE
-                    binding.rvComments.visibility = View.GONE
-                }
-            }
+            if (data is ResultState.Success) postDetailAdapter.setData(data.data)
         })
     }
 

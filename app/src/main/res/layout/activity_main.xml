@@ -44,7 +44,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_cancel" />
+            android:src="@drawable/ic_cancel"
+            android:contentDescription="@string/failed_load_data"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,7 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/empty_box" />
+            android:src="@drawable/empty_box"
+            android:contentDescription="@string/data_is_empty"/>
 
         <TextView
             android:layout_width="wrap_content"

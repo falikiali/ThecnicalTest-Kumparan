@@ -2,14 +2,19 @@ package com.example.thecnicaltest_kumparan.ui.userdetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
-import com.example.thecnicaltest_kumparan.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thecnicaltest_kumparan.databinding.ActivityUserDetailBinding
 import com.example.thecnicaltest_kumparan.domain.model.User
+import com.example.thecnicaltest_kumparan.utils.ResultState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserDetailActivity : AppCompatActivity() {
     private val userDetailViewModel: UserDetailViewModel by viewModels()
     private lateinit var binding: ActivityUserDetailBinding
+    private val userDetailAdapter = UserDetailAdapter()
 
     companion object {
         const val EXTRA_USER = "extra_user"
@@ -22,6 +27,7 @@ class UserDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         getIntentData()
+        initRecyclerView()
     }
 
     private fun getIntentData() {
@@ -41,6 +47,32 @@ class UserDetailActivity : AppCompatActivity() {
             tvPhone.text = user.phone
             tvWebsite.text = user.website
         }
+        observeViewModel(user.id)
+    }
+
+    private fun initRecyclerView() {
+        binding.rvAlbums.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = userDetailAdapter
+        }
+    }
+
+    private fun observeViewModel(userId: Int) {
+        userDetailViewModel.getAlbum(userId).observe(this, { data ->
+            when(data) {
+                is ResultState.Success -> {
+                    userDetailAdapter.setData(data.data)
+
+                    data.data.forEach { album ->
+                        userDetailViewModel.getPhoto(album.id).observe(this, { dataPhoto ->
+                            when(dataPhoto) {
+                                is ResultState.Success -> userDetailAdapter.setDataPhoto(dataPhoto.data)
+                            }
+                        })
+                    }
+                }
+            }
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean {

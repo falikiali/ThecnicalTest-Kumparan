@@ -70,4 +70,7 @@ dependencies {
 
     //ktx
     implementation "androidx.activity:activity-ktx:$activityKtxVersion"
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }
