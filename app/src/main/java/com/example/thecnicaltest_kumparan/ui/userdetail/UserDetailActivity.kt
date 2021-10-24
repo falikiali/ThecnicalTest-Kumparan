@@ -59,18 +59,14 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun observeViewModel(userId: Int) {
         userDetailViewModel.getAlbum(userId).observe(this, { data ->
-            when(data) {
-                is ResultState.Success -> {
-                    userDetailAdapter.setData(data.data)
+            if (data is ResultState.Success) {
+                userDetailAdapter.setData(data.data)
+            }
+        })
 
-                    data.data.forEach { album ->
-                        userDetailViewModel.getPhoto(album.id).observe(this, { dataPhoto ->
-                            when(dataPhoto) {
-                                is ResultState.Success -> userDetailAdapter.setDataPhoto(dataPhoto.data)
-                            }
-                        })
-                    }
-                }
+        userDetailViewModel.listPhoto.observe(this, { photo ->
+            if (photo is ResultState.Success) {
+                userDetailAdapter.setDataPhoto(photo.data)
             }
         })
     }

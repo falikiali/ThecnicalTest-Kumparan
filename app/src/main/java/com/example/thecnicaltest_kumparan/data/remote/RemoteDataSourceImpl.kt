@@ -17,5 +17,5 @@ class RemoteDataSourceImpl @Inject constructor (private val apiService: ApiServi
 
     override suspend fun getAlbum(userId: Int): List<AlbumResponseItem> = apiService.getAlbums(userId)
 
-    override suspend fun getPhoto(albumId: Int): List<PhotoResponseItem> = apiService.getPhotos(albumId)
+    override suspend fun getPhoto(): List<PhotoResponseItem> = apiService.getPhotos()
 }

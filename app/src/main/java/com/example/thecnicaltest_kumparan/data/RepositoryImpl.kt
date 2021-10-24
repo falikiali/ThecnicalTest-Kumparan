@@ -16,12 +16,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: RemoteDataSourceImpl) : Repository {
+class RepositoryImpl @Inject constructor (private val remoteDataSource: RemoteDataSource) : Repository {
     override fun getAllPost(): LiveData<ResultState<List<Post>>> {
         val result = MutableLiveData<ResultState<List<Post>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSourceImpl.getAllPost()
+                val response = remoteDataSource.getAllPost()
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
@@ -40,7 +40,7 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
         val result = MutableLiveData<ResultState<List<User>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSourceImpl.getAllUser()
+                val response = remoteDataSource.getAllUser()
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
@@ -59,7 +59,7 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
         val result = MutableLiveData<ResultState<User>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSourceImpl.getUser(userId)
+                val response = remoteDataSource.getUser(userId)
                 val dataMapped = DataMapper.mapUserResponseToEntities(response)
                 result.postValue(ResultState.Success(dataMapped))
             } catch (ex: IOException) {
@@ -74,7 +74,7 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
         val result = MutableLiveData<ResultState<List<Comment>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSourceImpl.getComment(postId)
+                val response = remoteDataSource.getComment(postId)
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
@@ -93,7 +93,7 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
         val result = MutableLiveData<ResultState<List<Album>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSourceImpl.getAlbum(userId)
+                val response = remoteDataSource.getAlbum(userId)
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {
@@ -108,11 +108,11 @@ class RepositoryImpl @Inject constructor (private val remoteDataSourceImpl: Remo
         return result
     }
 
-    override fun getPhoto(albumId: Int): LiveData<ResultState<List<Photo>>> {
+    override fun getPhoto(): LiveData<ResultState<List<Photo>>> {
         val result = MutableLiveData<ResultState<List<Photo>>>()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = remoteDataSourceImpl.getPhoto(albumId)
+                val response = remoteDataSource.getPhoto()
                 if (response.isEmpty()) {
                     result.postValue(ResultState.Empty)
                 } else {

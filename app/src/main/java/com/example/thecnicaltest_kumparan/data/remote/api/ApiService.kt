@@ -20,6 +20,6 @@ interface ApiService {
     @GET("users/{userId}/albums")
     suspend fun getAlbums(@Path("userId") userId: Int): List<AlbumResponseItem>
 
-    @GET("albums/{albumId}/photos")
-    suspend fun getPhotos(@Path("albumId") albumId: Int): List<PhotoResponseItem>
+    @GET("photos")
+    suspend fun getPhotos(): List<PhotoResponseItem>
 }

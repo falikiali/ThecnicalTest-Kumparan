@@ -34,7 +34,15 @@ class UserDetailAdapter : RecyclerView.Adapter<UserDetailAdapter.ListViewHolder>
             with(binding) {
                 tvTitle.text = data.title
 
-                val childAdapter = UserDetailChildAdapter(listPhoto)
+                val childAdapter = UserDetailChildAdapter()
+                val dataChildAdapter = ArrayList<Photo>()
+                listPhoto.forEach {
+                    if (it.albumId == data.id) {
+                        dataChildAdapter.add(it)
+                    }
+                }
+                childAdapter.setDataPhoto(dataChildAdapter)
+
 
                 rvPhotos.apply {
                     layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)

@@ -10,11 +10,14 @@ import com.example.thecnicaltest_kumparan.databinding.ListItemPhotoRowBinding
 import com.example.thecnicaltest_kumparan.domain.model.Photo
 import com.squareup.picasso.Picasso
 
-class UserDetailChildAdapter(photo: List<Photo>) : RecyclerView.Adapter<UserDetailChildAdapter.ListViewHolder>() {
-    private var listPhoto: List<Photo> = ArrayList()
+class UserDetailChildAdapter : RecyclerView.Adapter<UserDetailChildAdapter.ListViewHolder>() {
+    private var listPhoto = ArrayList<Photo>()
 
-    init {
-        this.listPhoto = photo
+    fun setDataPhoto(newListPhoto: List<Photo>?) {
+        if (newListPhoto == null) return
+        listPhoto.clear()
+        listPhoto.addAll(newListPhoto)
+        notifyDataSetChanged()
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

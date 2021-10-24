@@ -10,5 +10,5 @@ interface Repository {
     fun getUser(userId: Int): LiveData<ResultState<User>>
     fun getComment(postId: Int): LiveData<ResultState<List<Comment>>>
     fun getAlbum(userId: Int): LiveData<ResultState<List<Album>>>
-    fun getPhoto(albumId: Int): LiveData<ResultState<List<Photo>>>
+    fun getPhoto(): LiveData<ResultState<List<Photo>>>
 }

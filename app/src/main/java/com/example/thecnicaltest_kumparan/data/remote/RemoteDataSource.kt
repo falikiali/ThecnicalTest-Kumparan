@@ -8,5 +8,5 @@ interface RemoteDataSource {
     suspend fun getUser(userId: Int): UserResponseItem
     suspend fun getComment(postId: Int): List<CommentResponseItem>
     suspend fun getAlbum(userId: Int): List<AlbumResponseItem>
-    suspend fun getPhoto(albumId: Int): List<PhotoResponseItem>
+    suspend fun getPhoto(): List<PhotoResponseItem>
 }
