@@ -2,10 +2,9 @@ package com.example.thecnicaltest_kumparan.ui.photodetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bumptech.glide.Glide
-import com.example.thecnicaltest_kumparan.R
 import com.example.thecnicaltest_kumparan.databinding.ActivityPhotoDetailBinding
 import com.example.thecnicaltest_kumparan.domain.model.Photo
+import com.squareup.picasso.Picasso
 
 class PhotoDetailActivity : AppCompatActivity() {
     companion object {
@@ -37,9 +36,9 @@ class PhotoDetailActivity : AppCompatActivity() {
     }
 
     private fun setImageView(photo: Photo) {
-        Glide.with(this)
-            .load(photo.url)
-            .into(binding.ivPhoto)
+        with(binding) {
+            Picasso.get().load(photo.url).into(ivPhoto)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
