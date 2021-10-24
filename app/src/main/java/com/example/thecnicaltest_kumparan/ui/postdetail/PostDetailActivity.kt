@@ -31,7 +31,7 @@ class PostDetailActivity : AppCompatActivity() {
         binding = ActivityPostDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = "Detail User Page"
+        title = "Detail Post Page"
 
         getIntentData()
         initRecyclerView()

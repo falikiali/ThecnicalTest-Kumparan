@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.thecnicaltest_kumparan.R
 import com.example.thecnicaltest_kumparan.databinding.ListItemPhotoRowBinding
 import com.example.thecnicaltest_kumparan.domain.model.Photo
-import com.squareup.picasso.Picasso
 
 class UserDetailChildAdapter : RecyclerView.Adapter<UserDetailChildAdapter.ListViewHolder>() {
     private var listPhoto = ArrayList<Photo>()

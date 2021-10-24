@@ -26,6 +26,8 @@ class UserDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        title = "Detail User Page"
+
         getIntentData()
         initRecyclerView()
     }
