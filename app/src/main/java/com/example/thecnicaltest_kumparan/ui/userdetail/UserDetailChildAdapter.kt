@@ -1,5 +1,6 @@
 package com.example.thecnicaltest_kumparan.ui.userdetail
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.thecnicaltest_kumparan.R
 import com.example.thecnicaltest_kumparan.databinding.ListItemPhotoRowBinding
 import com.example.thecnicaltest_kumparan.domain.model.Photo
+import com.example.thecnicaltest_kumparan.ui.photodetail.PhotoDetailActivity
 
 class UserDetailChildAdapter : RecyclerView.Adapter<UserDetailChildAdapter.ListViewHolder>() {
     private var listPhoto = ArrayList<Photo>()
@@ -27,6 +29,15 @@ class UserDetailChildAdapter : RecyclerView.Adapter<UserDetailChildAdapter.ListV
                     .load(data.thumbnailUrl)
                     .into(ivPhoto)
                 tvTitle.text = data.title
+            }
+
+            with(itemView) {
+                setOnClickListener {
+                    val intent = Intent(context, PhotoDetailActivity::class.java).apply {
+                        putExtra(PhotoDetailActivity.EXTRA_DATA, data)
+                    }
+                    context.startActivity(intent)
+                }
             }
         }
     }

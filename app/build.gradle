@@ -46,10 +46,10 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
 
-    //recyclerview
+    //recycler view
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 
-    //cardview
+    //card view
     implementation "androidx.cardview:cardview:$cardViewVersion"
 
     //glide
@@ -68,6 +68,9 @@ dependencies {
     //hilt-dagger
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    //zolad zoom in image view
+    implementation "com.zolad:zoominimageview:$zoomInImageViewVersion"
 
     //ktx
     implementation "androidx.activity:activity-ktx:$activityKtxVersion"
